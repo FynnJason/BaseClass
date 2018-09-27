@@ -1,4 +1,4 @@
-package com.fynnjason.app.baseclass;
+package com.fynnjason.app.baseclass.basemvp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -6,25 +6,28 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpView;
+
 import butterknife.ButterKnife;
 
 /**
  * Created by FynnJason on on 2018/9/25.
- * Function：Activity基类 MVC模式使用
+ * Function：Activity基类 MVP模式使用
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseMvpActivity<V extends MvpView, P extends MvpBasePresenter<V>> extends MvpActivity<V, P> {
 
     private boolean mEnabled = false;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         //黄油刀绑定
@@ -35,8 +38,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
         initView();
         initListener();
+        loadData();
     }
-
 
     /**
      * 视图id
@@ -52,6 +55,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         return this;
     }
 
+    @NonNull
+    public abstract P createPresenter();
+
     /**
      * 初始化数据
      */
@@ -66,6 +72,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 初始化监听事件
      */
     public abstract void initListener();
+
+    /**
+     * 剩余的逻辑代码，加载数据都放在这里处理
+     */
+    public abstract void loadData();
 
     /**
      * 防止Fragment崩溃后重置Activity导致的Fragment重叠问题

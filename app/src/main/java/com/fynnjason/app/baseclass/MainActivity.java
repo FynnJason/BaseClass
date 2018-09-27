@@ -2,7 +2,9 @@ package com.fynnjason.app.baseclass;
 
 import android.util.Log;
 
-public class MainActivity extends BaseActivity {
+import com.fynnjason.app.baseclass.basemvc.BaseMvcActivity;
+
+public class MainActivity extends BaseMvcActivity {
 
     @Override
     public int getLayoutId() {
@@ -21,6 +23,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initListener() {
+
+    }
+
+    @Override
+    public void loadData() {
 
     }
 }
