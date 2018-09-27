@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by FynnJason on on 2018/9/25.
- * Function：Activity基类 MVP模式使用
+ * Function：Activity基类 MVP使用
  */
 public abstract class BaseMvpActivity<V extends MvpView, P extends MvpBasePresenter<V>> extends MvpActivity<V, P> {
 
