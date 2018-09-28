@@ -8,9 +8,17 @@ import android.widget.Toast;
  * Function：Toast工具类
  */
 public class ToastUtils {
+
     private static Toast sToast = null;
 
-    private static void showMessage(Context context, final String msg, int len) {
+    /**
+     * 有效避免多次调用toast造成的多次显示
+     *
+     * @param context 上下文
+     * @param msg     消息
+     * @param len     长度，默认短
+     */
+    private static void show(Context context, final String msg, int len) {
         if (sToast != null) {
             sToast.cancel();
         }
@@ -19,6 +27,6 @@ public class ToastUtils {
     }
 
     public static void show(Context context, String msg) {
-        showMessage(context, msg, Toast.LENGTH_SHORT);
+        show(context, msg, Toast.LENGTH_SHORT);
     }
 }
