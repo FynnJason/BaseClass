@@ -1,7 +1,5 @@
 package com.fynnjason.app.baseclass;
 
-import android.util.Log;
-
 import com.fynnjason.app.baseclass.basemvc.BaseMvcActivity;
 
 public class MainActivity extends BaseMvcActivity {
@@ -13,7 +11,7 @@ public class MainActivity extends BaseMvcActivity {
 
     @Override
     public void initData() {
-        Log.e("MainActivity", "initData: " + getActivity().getLocalClassName());
+
     }
 
     @Override
